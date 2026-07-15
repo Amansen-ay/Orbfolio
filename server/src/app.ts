@@ -1,4 +1,5 @@
 import express from "express";
+import userRouter from './interfaces/http/user/userRoutes.js';
 
 const app = express();
 
@@ -10,5 +11,6 @@ app.get("/health", (req, res) => {
         message: "Orbfolio API is running"
     });
 });
+app.use('/users',userRouter)
 
 export default app;
