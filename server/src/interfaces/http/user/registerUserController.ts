@@ -4,28 +4,28 @@ import type { RegisterUserInput } from '../../../application/user/registerUserIn
 import MongooseUserRepository from '../../../infrastructure/persistence/mongoose/mongooseUserRepository.js';
 import BcryptPasswordHasher from '../../../infrastructure/security/bcryptPasswordHasher.js';
 
+const repo = new MongooseUserRepository();
+const hasher = new BcryptPasswordHasher();
+const registerUser = new RegisterUser(repo, hasher);
 
-const  createUser = async (req: Request<{}, {}, RegisterUserInput>, res: Response): Promise<void> => {
-   try{
-    const repo = new MongooseUserRepository();
-    const hasher =  new BcryptPasswordHasher();
-    const registerUser = new RegisterUser(repo,hasher);
-    const output = await registerUser.execute(req.body)
-    res.status(201).json(output)
-   }
-   catch(err:unknown) {
-    if(err instanceof Error) {
-        res.status(400).json({
-            message:err.message
-        })
+const createUser = async (req: Request<{}, {}, RegisterUserInput>, res: Response): Promise<void> => {
+    try {
+        const output = await registerUser.execute(req.body)
+        res.status(201).json(output)
     }
-    else{
-        res.status(400).json({
-            message:"Unknown error"
-        })
+    catch (err: unknown) {
+        if (err instanceof Error) {
+            res.status(400).json({
+                message: err.message
+            })
+        }
+        else {
+            res.status(400).json({
+                message: "Unknown error"
+            })
+        }
     }
-   }
-    
+
 }
 
 export default createUser;

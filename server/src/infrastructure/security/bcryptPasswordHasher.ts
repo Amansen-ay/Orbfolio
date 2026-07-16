@@ -9,4 +9,7 @@ export default class BcryptPasswordHasher implements PasswordHasher {
         return hashedPassword
 
     }
+    async compare(password:string,passwordHash:string):Promise<boolean>{
+        return await bcrypt.compare(password,passwordHash);
+    }
 }
