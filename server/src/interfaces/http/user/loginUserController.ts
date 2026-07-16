@@ -10,7 +10,7 @@ const hasher = new BcryptPasswordHasher();
 const tokenProvider = new JwtTokenProvider();
 const loginUser = new LoginUser(repo, hasher, tokenProvider);
 
-export const loginUserController = async (req: Request<{}, {}, LoginInput>, res: Response): Promise<void> => {
+const loginUserController = async (req: Request<{}, {}, LoginInput>, res: Response): Promise<void> => {
 
     try {
         const output = await loginUser.execute(req.body);
@@ -29,3 +29,5 @@ export const loginUserController = async (req: Request<{}, {}, LoginInput>, res:
         }
     }
 }
+
+export default  loginUserController
