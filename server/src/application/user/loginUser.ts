@@ -4,7 +4,7 @@ import type {TokenProvider} from './ports/tokenProvider.js';
 import type {LoginInput} from './loginInput.js';
 import type {LoginOutput} from './loginOutput.js';
 
-class LoginUser {
+export class LoginUser {
     private  userRepository:UserRepository;
     private  passwordHasher: PasswordHasher;
     private  tokenProvider : TokenProvider;
