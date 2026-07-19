@@ -6,5 +6,6 @@ export type payloadType =  {
 
 }
 export interface TokenProvider{
-    generateToken(payload:payloadType):string
+    generateToken(payload:payloadType):string;
+    verifyToken(token:string):payloadType;
 }

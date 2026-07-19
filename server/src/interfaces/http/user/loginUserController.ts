@@ -1,14 +1,9 @@
 import { Request, Response } from 'express';
-import MongooseUserRepository from '../../../infrastructure/persistence/mongoose/mongooseUserRepository.js';
-import BcryptPasswordHasher from '../../../infrastructure/security/bcryptPasswordHasher.js';
-import { JwtTokenProvider } from '../../../infrastructure/security/jwtTokenProvider.js';
 import { LoginInput } from '../../../application/user/loginInput.js';
-import { LoginUser } from '../../../application/user/loginUser.js';
+import {loginUser} from '../../../compositions/userComposition.js'
 
-const repo = new MongooseUserRepository();
-const hasher = new BcryptPasswordHasher();
-const tokenProvider = new JwtTokenProvider();
-const loginUser = new LoginUser(repo, hasher, tokenProvider);
+
+
 
 const loginUserController = async (req: Request<{}, {}, LoginInput>, res: Response): Promise<void> => {
 
