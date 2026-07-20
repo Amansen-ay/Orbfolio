@@ -1,8 +1,11 @@
 import {Request,Response} from 'express';
+import {getCurrentUser} from '../../../compositions/userComposition.js';;
 
-const getCurrentUser = (req:Request,res:Response):void => {
+const  getCurrentUserController = async (req:Request,res:Response):Promise<void> => {
+
     try{
-        res.json(req.user)
+        const user = await getCurrentUser.execute(req.user.userId)
+        res.json(user)
     }
     catch(err:unknown){
         if(err instanceof Error) {
@@ -18,4 +21,4 @@ const getCurrentUser = (req:Request,res:Response):void => {
     }
 }
 
-export default getCurrentUser;
+export default getCurrentUserController;

@@ -1,8 +1,8 @@
-import type {UserRepository} from './ports/userRepository.js';
-import type {PasswordHasher} from './ports/passwordHasher.js';
-import type {TokenProvider} from './ports/tokenProvider.js';
-import type {LoginInput} from './loginInput.js';
-import type {LoginOutput} from './loginOutput.js';
+import type {UserRepository} from '../ports/userRepository.js';
+import type {PasswordHasher} from '../ports/passwordHasher.js';
+import type {TokenProvider} from '../ports/tokenProvider.js';
+import type {LoginInput} from '../loginInput.js';
+import type {LoginOutput} from '../loginOutput.js';
 
 export class LoginUser {
     private  userRepository:UserRepository;

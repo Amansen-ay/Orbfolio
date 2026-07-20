@@ -1,8 +1,8 @@
-import { UserRepository } from './ports/userRepository.js';
-import type { UpdateProfileInput } from './updateProfileInput.js';
-import type { User } from '../../domain/user/user.js';
-import { MAX_DISPLAY_NAME_LENGTH, MAX_BIO_LENGTH, MIN_USERNAME_LENGTH, MAX_USERNAME_LENGTH } from '../../domain/user/userConstants.js';
-import {PublicUser} from './publicUser.js';
+import { UserRepository } from '../ports/userRepository.js';
+import type { UpdateProfileInput } from '../updateProfileInput.js';
+import type { User } from '../../../domain/user/user.js';
+import { MAX_DISPLAY_NAME_LENGTH, MAX_BIO_LENGTH, MIN_USERNAME_LENGTH, MAX_USERNAME_LENGTH } from '../../../domain/user/userConstants.js';
+import { updateProfileOutput } from '../updateProfileOutput.js';
 
 
 export class UpdateProfile {
@@ -14,7 +14,7 @@ export class UpdateProfile {
         this.userRepository = userRepository
     }
 
-    async execute(input: UpdateProfileInput): Promise<PublicUser> {
+    async execute(input: UpdateProfileInput): Promise<updateProfileOutput> {
 
         if (input.username !== undefined && (input.username.length > MAX_USERNAME_LENGTH || input.username.length < MIN_USERNAME_LENGTH)) {
             throw new Error("username should atleast be 3 to 30 character long.")
@@ -29,8 +29,8 @@ export class UpdateProfile {
 
         if (input.username !== undefined) {
             const userWithUsername = await this.userRepository.findByUsername(input.username);
-            if (userWithUsername?.id !== input.userId) {
-                throw new Error("Username already taken!")
+            if (userWithUsername && userWithUsername.id !== input.userId) {
+                throw new Error("Username already taken!");
             }
         }
 

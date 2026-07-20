@@ -1,8 +1,8 @@
-import type { RegisterUserInput } from './registerUserInput.js';
-import type { PasswordHasher } from './ports/passwordHasher.js';
-import type { UserRepository } from './ports/userRepository.js';
-import type { User } from "../../domain/user/user.js";
-import type { RegisterUserOutput } from "./registerUserOutput.js";
+import type { RegisterUserInput } from '../registerUserInput.js';
+import type { PasswordHasher } from '../ports/passwordHasher.js';
+import type { UserRepository } from '../ports/userRepository.js';
+import type { User } from "../../../domain/user/user.js";
+import type { RegisterUserOutput } from "../registerUserOutput.js";
 import { randomUUID } from "node:crypto";
 
 export class RegisterUser {
