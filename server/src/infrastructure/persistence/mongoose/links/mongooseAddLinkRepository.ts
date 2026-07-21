@@ -21,4 +21,9 @@ export class mongooseAddLinkRepository implements AddLinkRepository{
         const savedLink = await LinkModel.create(link);
         return savedLink;
     }
+    async findByUserId(userId:string):Promise<Link[]>{
+
+        const allLinks = await LinkModel.find({userId}).sort({order:1});
+        return allLinks
+    }
 }
