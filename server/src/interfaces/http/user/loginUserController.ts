@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { LoginInput } from '../../../application/user/loginInput.js';
-import {loginUser} from '../../../compositions/userComposition.js'
+import {loginUser} from '../../../compositions/user/userComposition.js'
 
 
 

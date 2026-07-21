@@ -1,4 +1,4 @@
-import {updateProfile} from '../../../compositions/userComposition.js';
+import {updateProfile} from '../../../compositions/user/userComposition.js';
 import {Request,Response} from 'express';
 
 

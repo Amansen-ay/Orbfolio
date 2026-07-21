@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getpublicUser } from '../../../compositions/userComposition.js';
+import { getpublicUser } from '../../../compositions/user/userComposition.js';
 
 interface GetPublicUserParams {
     username: string;

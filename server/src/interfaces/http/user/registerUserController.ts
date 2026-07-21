@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import type { RegisterUserInput } from '../../../application/user/registerUserInput.js';
-import {registerUser} from '../../../compositions/userComposition.js';
+import {registerUser} from '../../../compositions/user/userComposition.js';
 
 
 const createUser = async (req: Request<{}, {}, RegisterUserInput>, res: Response): Promise<void> => {

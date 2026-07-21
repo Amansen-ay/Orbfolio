@@ -1,5 +1,5 @@
 import { Request, Response,NextFunction } from 'express';
-import {tokenProvider} from '../../../compositions/userComposition.js';
+import {tokenProvider} from '../../../compositions/user/userComposition.js';
 
 export const authMiddleware = (req: Request, res: Response,next:NextFunction): void => {
 

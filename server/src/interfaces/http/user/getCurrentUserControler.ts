@@ -1,5 +1,5 @@
 import {Request,Response} from 'express';
-import {getCurrentUser} from '../../../compositions/userComposition.js';;
+import {getCurrentUser} from '../../../compositions/user/userComposition.js';;
 
 const  getCurrentUserController = async (req:Request,res:Response):Promise<void> => {
 

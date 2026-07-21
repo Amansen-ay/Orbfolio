@@ -1,5 +1,5 @@
-import type { UserRepository } from '../../../application/user/ports/userRepository.js';
-import type { User } from "../../../domain/user/user.js";
+import type { UserRepository } from '../../../../application/user/ports/userRepository.js';
+import type { User } from "../../../../domain/user/user.js";
 import { UserModel } from './userModel.js';
 
 export default class MongooseUserRepository implements UserRepository {
