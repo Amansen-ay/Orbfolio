@@ -9,7 +9,7 @@ export class GetLinks{
         this.addLinkRepository = addLinkRepository;
     }
     async execute(userId:string):Promise<Link[]>{
-        const allLinks = await this.addLinkRepository.findByUserId(userId);
+        const allLinks = await this.addLinkRepository.findLinksByUserId(userId);
         return allLinks
     }
 }
