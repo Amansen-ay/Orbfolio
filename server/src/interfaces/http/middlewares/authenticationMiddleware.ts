@@ -1,7 +1,7 @@
-import { Request, Response,NextFunction } from 'express';
 import {tokenProvider} from '../../../compositions/user/userComposition.js';
+import { RequestHandler } from "express";
 
-export const authMiddleware = (req: Request, res: Response,next:NextFunction): void => {
+export const authMiddleware:RequestHandler = (req,res,next): void => {
 
     const authHeader = req.headers.authorization;
 

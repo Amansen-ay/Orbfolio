@@ -45,4 +45,7 @@ export class mongooseAddLinkRepository implements AddLinkRepository {
 
         return updatedLink
     }
+    async deleteLink(id:string):Promise<void>{
+        await LinkModel.findOneAndDelete({id})
+    }
 }

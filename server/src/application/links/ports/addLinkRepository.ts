@@ -6,4 +6,5 @@ export interface AddLinkRepository{
     findLinkById(id:string):Promise<Link|null>;
     updateLink(link:Link):Promise<Link>;
     save(link:Link):Promise<Link>;
+    deleteLink(id:string):Promise<void>;
 }
