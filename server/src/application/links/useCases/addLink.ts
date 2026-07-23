@@ -24,6 +24,7 @@ export class AddLink {
 
             throw new Error("Title must not exceed 50 characters.")
         }
+        
         let url: URL;
 
         try {

@@ -1,4 +1,5 @@
 import {Link} from '../../../domain/links/link.js';
+import {ReorderLinksInput} from '../reoerderLinksInput.js';
 export interface AddLinkRepository{
     countByUserId(userId:string):Promise<number>;
     getNextOrder(userId:string):Promise<number>;
@@ -7,4 +8,8 @@ export interface AddLinkRepository{
     updateLink(link:Link):Promise<Link>;
     save(link:Link):Promise<Link>;
     deleteLink(id:string):Promise<void>;
+    reorderLinks(links:{
+        id:string,
+        order:number
+    }[]):Promise<void>;
 }

@@ -48,4 +48,19 @@ export class mongooseAddLinkRepository implements AddLinkRepository {
     async deleteLink(id:string):Promise<void>{
         await LinkModel.findOneAndDelete({id})
     }
+    async reorderLinks(links:{id:string,order:number}[]):Promise<void>{
+        const operations = links.map(link=>({
+            updateOne:{
+                filter:{
+                    id:link.id
+                },
+                update:{
+                    order:link.order,
+                    updatedAt:new Date()
+                }
+            }
+        }))
+        
+        await LinkModel.bulkWrite(operations)
+    }
 }
