@@ -20,7 +20,7 @@ export function LoginCard() {
           </p>
         </div>
 
-        <form className="mt-10 space-y-6">
+        <form className="mt-6 space-y-6">
           <div>
             <label className="mb-3 block text-sm font-semibold text-slate-800">
               Email address

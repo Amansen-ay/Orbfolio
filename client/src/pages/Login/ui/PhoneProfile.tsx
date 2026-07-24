@@ -7,6 +7,7 @@ import {
 } from "react-icons/fa";
 
 import { MdEmail } from "react-icons/md";
+import logo from "@/shared/assets/logo.png";
 
 const links = [
     {
@@ -37,13 +38,31 @@ export function PhoneProfile() {
 
             {/* Avatar */}
 
-            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border-4 border-orange-300 bg-orange-100 text-3xl font-black text-orange-500">
-                O
+            <div
+                className="
+    mx-auto
+    flex
+    h-14
+    w-14
+    items-center
+    justify-center
+    rounded-full
+    border-[3px]
+    border-orange-300
+    bg-orange-50
+    shadow-sm
+  "
+            >
+                <img
+                    src={logo}
+                    alt="Orbfolio"
+                    className="h-14 w-20 object-container"
+                />
             </div>
 
             {/* Name */}
 
-            <h2 className="mt-4 text-center text-2xl font-bold text-slate-900">
+            <h2 className="mt-3 text-center text-2xl font-bold text-slate-900">
                 Aman Sen
             </h2>
 
@@ -78,7 +97,7 @@ export function PhoneProfile() {
 
             {/* Divider */}
 
-            <div className="my-4 h-px bg-slate-200" />
+            <div className="my-3 h-px bg-slate-200" />
 
             {/* Links */}
 
@@ -105,7 +124,7 @@ export function PhoneProfile() {
 
             <div className="mt-auto pb-6">
 
-                
+
 
                 <p className="mt-4 text-center text-xs text-slate-500">
                     Made with
