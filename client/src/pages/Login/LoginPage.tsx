@@ -9,7 +9,7 @@ export function LoginPage() {
 
       <div className="absolute -right-32 bottom-0 h-[500px] w-[500px] rounded-full bg-yellow-300/40 blur-[180px]" />
 
-      <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl items-center px-8 lg:grid-cols-2 lg:px-16">
+      <div className="relative z-10 mx-auto grid max-w-7xl items-start gap-20 px-8 py-10 lg:grid-cols-2 lg:px-16">        
         <AuthHero />
         <LoginCard />
       </div>
