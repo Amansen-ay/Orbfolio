@@ -2,11 +2,27 @@ import { PhoneProfile } from './PhoneProfile';
 import { ThemeStack } from "./ThemeStack";
 export function PhoneMockup() {
   return (
-    <div className="relative mt-12 z-50 h-[560px] w-[500px] ">
+    <div className="relative mt-38 z-50 h-[560px] w-[500px] ">
       {/* Theme Cards */}
 
       <ThemeStack />
       {/* Floating Dot - Top Right */}
+
+      <div
+        className="
+    absolute
+    top-[-40px]
+    left-[370px]
+    h-4
+    w-4
+    rounded-full
+    bg-gradient-to-br
+    from-yellow-300
+    to-orange-500
+    shadow-[0_0_18px_rgba(251,146,60,0.6)]
+    float-fast
+  "
+      />
 
       <div
         className="
@@ -68,7 +84,7 @@ export function PhoneMockup() {
           absolute
           left-0
           top-0
-          h-[540px]
+          h-[580px]
           w-[300px]
           overflow-hidden
           rounded-[52px]

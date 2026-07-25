@@ -117,62 +117,61 @@ export function LoginCard() {
             <div className="h-px flex-1 bg-slate-200" />
           </div>
           
-          <button
-            type="button"
-            className="
-    group
-    flex
-    h-14
-    w-full
-    items-center
-    justify-center
-    gap-3
-    rounded-2xl
-    border
-    border-slate-200
-    bg-white
-    font-medium
-    text-slate-700
-    transition-all
-    duration-300
-    hover:-translate-y-0.5
-    hover:border-orange-200
-    hover:bg-orange-50/40
-  "
-          >
-            <FcGoogle className="text-2xl" />
+         <div className="grid grid-cols-2 gap-4">
+  {/* Google */}
+  <button
+    type="button"
+    className="
+      group
+      flex
+      h-14
+      items-center
+      justify-center
+      gap-2
+      rounded-2xl
+      border
+      border-slate-200
+      bg-white
+      font-medium
+      text-slate-700
+      transition-all
+      duration-300
+      hover:-translate-y-0.5
+      hover:border-orange-200
+      hover:bg-orange-50/40
+    "
+  >
+    <FcGoogle className="text-[22px]" />
+    <span>Google</span>
+  </button>
 
-            Continue with Google
-          </button>
-
-          <button
-            type="button"
-            className="
-    group
-    mt-4
-    flex
-    h-14
-    w-full
-    items-center
-    justify-center
-    gap-3
-    rounded-2xl
-    border
-    border-slate-200
-    bg-white
-    font-medium
-    text-slate-700
-    transition-all
-    duration-300
-    hover:-translate-y-0.5
-    hover:border-slate-300
-    hover:bg-slate-50
-  "
-          >
-            <FaGithub className="text-xl" />
-
-            Continue with GitHub
-          </button>
+  {/* GitHub */}
+  <button
+    type="button"
+    className="
+      group
+      flex
+      h-14
+      items-center
+      justify-center
+      gap-2
+      rounded-2xl
+      border
+      border-slate-200
+      bg-white
+      font-medium
+      text-slate-700
+      transition-all
+      duration-300
+      hover:-translate-y-0.5
+      hover:border-slate-300
+      hover:bg-slate-50
+    "
+  >
+    <FaGithub className="text-[20px]" />
+    <span>GitHub</span>
+  </button>
+</div>
 
           <p className="mt-8 text-center text-slate-500">
             Don't have an account?{" "}

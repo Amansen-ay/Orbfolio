@@ -3,31 +3,89 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
 export function RegisterCard() {
-  return (
-    <section className="flex justify-center lg:justify-end">
-      <div className="w-full max-w-lg rounded-[32px] border border-gray-200/70 bg-white p-10 shadow-[0_30px_80px_rgba(15,23,42,0.08)]">
-        <div>
-          <p className="text-sm font-semibold text-orange-500">
-            Welcome back 👋
-          </p>
+    return (
+        <section className="flex justify-center lg:justify-end">
+            <div className="w-full max-w-lg rounded-[32px] border border-gray-200/70 bg-white p-10 shadow-[0_30px_80px_rgba(15,23,42,0.08)]">
+                <div>
+                    <p className="text-sm font-semibold text-orange-500">
+                        Ready to make your orbit?
+                    </p>
 
-          <h2 className="mt-2 text-5xl font-bold tracking-tight text-slate-900">
-            Log in to <span className="text-orange-500">Orbfolio</span>
-          </h2>
+                    <h2 className="mt-2 text-5xl font-bold tracking-tight text-slate-900">
+                        Create your account
+                    </h2>
 
-          <p className="mt-4 text-lg text-slate-500">
-            Enter your credentials to continue
-          </p>
-        </div>
+                    <p className="mt-4 text-lg text-slate-500">
+                        Create your account and start building your profile.
+                    </p>
+                </div>
 
-        <form className="mt-6 space-y-6">
-          <div>
-            <label className="mb-3 block text-sm font-semibold text-slate-800">
-              Email address
-            </label>
+                <form className="mt-6 space-y-6">
 
-            <div
-              className="
+                    <div className="grid grid-cols-2 gap-4">
+                        <div>
+                            <label className="mb-2 block text-sm font-semibold text-slate-800">
+                                First Name
+                            </label>
+
+                            <input
+                                type="text"
+                                placeholder="John"
+                                className="
+        h-14
+        w-full
+        rounded-2xl
+        border
+        border-slate-200
+        bg-slate-50
+        px-5
+        outline-none
+        transition-all
+        duration-300
+        placeholder:text-slate-400
+        focus:border-orange-400
+        focus:bg-white
+        focus:ring-4
+        focus:ring-orange-100
+      "
+                            />
+                        </div>
+
+                        <div>
+                            <label className="mb-2 block text-sm font-semibold text-slate-800">
+                                Last Name
+                            </label>
+
+                            <input
+                                type="text"
+                                placeholder="Doe"
+                                className="
+        h-14
+        w-full
+        rounded-2xl
+        border
+        border-slate-200
+        bg-slate-50
+        px-5
+        outline-none
+        transition-all
+        duration-300
+        placeholder:text-slate-400
+        focus:border-orange-400
+        focus:bg-white
+        focus:ring-4
+        focus:ring-orange-100
+      "
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <label className="mb-3 block text-sm font-semibold text-slate-800">
+                            Email address
+                        </label>
+
+                        <div
+                            className="
       flex
       h-14
       items-center
@@ -41,33 +99,27 @@ export function RegisterCard() {
       focus-within:ring-4
       focus-within:ring-orange-100
     "
-            >
-              <FiMail className="text-xl text-slate-400" />
+                        >
+                            <FiMail className="text-xl text-slate-400" />
 
-              <input
-                type="email"
-                placeholder="you@example.com"
-                className="ml-3 w-full bg-transparent outline-none"
-              />
-            </div>
-          </div>
+                            <input
+                                type="email"
+                                placeholder="you@example.com"
+                                className="ml-3 w-full bg-transparent outline-none"
+                            />
+                        </div>
+                    </div>
 
-          <div>
-            <div className="mb-3 flex items-center justify-between">
-              <label className="text-sm font-semibold text-slate-800">
-                Password
-              </label>
+                    <div>
+                        <div className="mb-3 flex items-center justify-between">
+                            <label className="text-sm font-semibold text-slate-800">
+                                Password
+                            </label>
 
-              <button
-                type="button"
-                className="text-sm font-semibold text-orange-500 hover:text-orange-600"
-              >
-                Forgot?
-              </button>
-            </div>
+                        </div>
 
-            <div
-              className="
+                        <div
+                            className="
       flex
       h-14
       items-center
@@ -81,110 +133,153 @@ export function RegisterCard() {
       focus-within:ring-4
       focus-within:ring-orange-100
     "
-            >
-              <FiLock className="text-xl text-slate-400" />
+                        >
+                            <FiLock className="text-xl text-slate-400" />
 
-              <input
-                type="password"
-                placeholder="Enter your password"
-                className="ml-3 w-full bg-transparent outline-none"
-              />
+                            <input
+                                type="password"
+                                placeholder="Enter your password"
+                                className="ml-3 w-full bg-transparent outline-none"
+                            />
+                        </div>
+                        
+                    </div>
+
+                    {/* confirm password */}
+
+                    <div>
+                        <div className="mb-3 flex items-center justify-between">
+                            <label className="text-sm font-semibold text-slate-800">
+                                Confirm Password
+                            </label>
+
+
+                        </div>
+
+                        <div
+                            className="
+      flex
+      h-14
+      items-center
+      rounded-2xl
+      border
+      border-slate-200
+      px-4
+      transition-all
+      duration-300
+      focus-within:border-orange-500
+      focus-within:ring-4
+      focus-within:ring-orange-100
+    "
+                        >
+                            <FiLock className="text-xl text-slate-400" />
+
+                            <input
+                                type="password"
+                                placeholder="Confirm your password"
+                                className="ml-3 w-full bg-transparent outline-none"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="flex items-center justify-between accent-orange-500">
+                        <label className="flex items-center gap-3 text-sm text-slate-700">
+                            <input
+                                type="checkbox"
+                                className="h-4 w-4 rounded border-slate-300 text-orange-500 focus:ring-orange-500"
+                            />
+
+                            I agree to the Terms of Service and Privacy Policy
+                        </label>
+                    </div>
+
+                    <button className="h-14 w-full rounded-2xl bg-orange-500 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-600">
+                        Register
+                    </button>
+
+                    <div className="mt-1 mb-5 flex items-center">
+                        <div className="h-px flex-1 bg-slate-200" />
+
+                        <span className="mx-4 text-sm text-slate-400">
+                            or Signup with
+                        </span>
+
+                        <div className="h-px flex-1 bg-slate-200" />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+
+                        {/* Google */}
+
+                        <button
+                            type="button"
+                            className="
+      group
+      flex
+      h-14
+      items-center
+      justify-center
+      gap-2
+      rounded-2xl
+      border
+      border-slate-200
+      bg-white
+      font-medium
+      text-slate-700
+      transition-all
+      duration-300
+      hover:-translate-y-0.5
+      hover:border-orange-200
+      hover:bg-orange-50/40
+    "
+                        >
+                            <FcGoogle className="text-2xl" />
+
+                            <span>Google</span>
+                        </button>
+
+                        {/* GitHub */}
+
+                        <button
+                            type="button"
+                            className="
+      group
+      flex
+      h-14
+      items-center
+      justify-center
+      gap-2
+      rounded-2xl
+      border
+      border-slate-200
+      bg-white
+      font-medium
+      text-slate-700
+      transition-all
+      duration-300
+      hover:-translate-y-0.5
+      hover:border-slate-300
+      hover:bg-slate-50
+    "
+                        >
+                            <FaGithub className="text-xl" />
+
+                            <span>GitHub</span>
+                        </button>
+
+                    </div>
+
+                    <p className="mt-8 text-center text-slate-500">
+                        Already have an account?{" "}
+                        <button
+                            type="button"
+                            className="font-semibold text-orange-500 transition-colors hover:text-orange-600"
+                        >
+                            Login
+                        </button>
+                    </p>
+                </form>
             </div>
-          </div>
-
-          <div className="flex items-center justify-between accent-orange-500">
-            <label className="flex items-center gap-3 text-sm text-slate-700">
-              <input
-                type="checkbox"
-                className="h-4 w-4 rounded border-slate-300 text-orange-500 focus:ring-orange-500"
-              />
-
-              Remember me
-            </label>
-          </div>
-
-          <button className="h-14 w-full rounded-2xl bg-orange-500 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-600">
-            Log In
-          </button>
-
-          <div className="mt-1 mb-5 flex items-center">
-            <div className="h-px flex-1 bg-slate-200" />
-
-            <span className="mx-4 text-sm text-slate-400">
-              or continue with
-            </span>
-
-            <div className="h-px flex-1 bg-slate-200" />
-          </div>
-          
-          <button
-            type="button"
-            className="
-    group
-    flex
-    h-14
-    w-full
-    items-center
-    justify-center
-    gap-3
-    rounded-2xl
-    border
-    border-slate-200
-    bg-white
-    font-medium
-    text-slate-700
-    transition-all
-    duration-300
-    hover:-translate-y-0.5
-    hover:border-orange-200
-    hover:bg-orange-50/40
-  "
-          >
-            <FcGoogle className="text-2xl" />
-
-            Continue with Google
-          </button>
-
-          <button
-            type="button"
-            className="
-    group
-    mt-4
-    flex
-    h-14
-    w-full
-    items-center
-    justify-center
-    gap-3
-    rounded-2xl
-    border
-    border-slate-200
-    bg-white
-    font-medium
-    text-slate-700
-    transition-all
-    duration-300
-    hover:-translate-y-0.5
-    hover:border-slate-300
-    hover:bg-slate-50
-  "
-          >
-            <FaGithub className="text-xl" />
-
-            Continue with GitHub
-          </button>
-
-          <p className="mt-8 text-center text-slate-500">
-            Don't have an account?{" "}
-            <button
-              type="button"
-              className="font-semibold text-orange-500 transition-colors hover:text-orange-600"
-            >
-              Sign Up
-            </button>
-          </p>
-        </form>
-      </div>
-    </section>
-  );
+        </section>
+    );
 }
