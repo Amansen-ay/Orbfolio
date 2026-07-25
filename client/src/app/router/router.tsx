@@ -5,6 +5,7 @@ import {RegisterPage} from '@/pages/Register/RegisterPage';
 import {PageNotFound} from '@/pages/NotFound/NotFoundPage';
 import { WelcomePage } from "@/pages/onboarding/WelcomePage";
 import { DisplayNamePage } from "@/pages/onboarding/DisplayNamePage";
+import {UsernamePage} from '@/pages/onboarding/UsernamePage';
 
     export const router = createBrowserRouter([
     {
@@ -30,5 +31,8 @@ import { DisplayNamePage } from "@/pages/onboarding/DisplayNamePage";
     {
         path:'/onboarding/displayname',
         element:<DisplayNamePage/>
+    },{
+        path:'/onboarding/username',
+        element:<UsernamePage />
     }
     ]);
