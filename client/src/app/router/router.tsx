@@ -8,6 +8,8 @@ import { DisplayNamePage } from "@/pages/onboarding/DisplayNamePage";
 import {UsernamePage} from '@/pages/onboarding/UsernamePage';
 import {AvatarPage} from '@/pages/onboarding/AvatarPage';
 import {BioPage} from '@/pages/onboarding/BioPage';
+import {LocationPage} from '@/pages/onboarding/LocationPage';
+import {BirthdayPage} from '@/pages/onboarding/BirthdayPage'
 
 
     export const router = createBrowserRouter([
@@ -45,5 +47,13 @@ import {BioPage} from '@/pages/onboarding/BioPage';
     {
         path:'/onboarding/bio',
         element:<BioPage/>
+    },
+    {
+        path:'/onboarding/location',
+        element:<LocationPage/>
+    },
+    {
+        path:'/onboarding/dateofbirth',
+        element:<BirthdayPage/>
     }
     ]);
