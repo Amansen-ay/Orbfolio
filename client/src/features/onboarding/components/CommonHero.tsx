@@ -1,7 +1,7 @@
 import { PhoneProfile } from '@/pages/Login/ui/PhoneProfile';
 
 
-export function PhoneMockup() {
+export function CommonHero() {
   return (
     <div className="relative mt-38 z-50 h-[560px] w-[500px] ">
       {/* Theme Cards */}
@@ -82,8 +82,8 @@ export function PhoneMockup() {
       <div
         className="
           absolute
-          left-0
-          top-0
+          left-30
+          top-[-80px]
           h-[580px]
           w-[300px]
           overflow-hidden

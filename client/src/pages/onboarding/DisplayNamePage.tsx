@@ -1,9 +1,10 @@
 import { StepLayout } from "@/features/onboarding/components/StepLayout";
 import { DisplayNameCard } from "@/features/onboarding/ui/DisplayNameCard";
+import {CommonHero} from '@/features/onboarding/components/CommonHero';
 
-export function WelcomePage() {
+export function DisplayNamePage() {
   return (
-    <StepLayout>
+    <StepLayout left={<CommonHero/>}>
       <DisplayNameCard />
     </StepLayout>
   );

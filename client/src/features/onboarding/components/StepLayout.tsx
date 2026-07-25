@@ -1,9 +1,9 @@
-import { WelcomeHero } from './WelcomeHero';
 type StepLayoutProps = {
+    left:React.ReactNode,
     children: React.ReactNode;
 };
 
-export function StepLayout({ children }: StepLayoutProps) {
+export function StepLayout({ left,children }: StepLayoutProps) {
     return (
         <main
             className="
@@ -42,7 +42,7 @@ export function StepLayout({ children }: StepLayoutProps) {
     to-white
   "
                 >
-                    <WelcomeHero />
+                    {left}
                 </div>
 
                 {/* Right Side */}
