@@ -1,8 +1,9 @@
-    import { createBrowserRouter } from "react-router-dom";
-    import { HomePage } from "@/pages/Home/HomePage";
-    import {LoginPage} from "@/pages/Login/LoginPage";
-    import {RegisterPage} from '@/pages/Register/RegisterPage';
-    import {PageNotFound} from '@/pages/NotFound/NotFoundPage';
+import { createBrowserRouter } from "react-router-dom";
+import { HomePage } from "@/pages/Home/HomePage";
+import {LoginPage} from "@/pages/Login/LoginPage";
+import {RegisterPage} from '@/pages/Register/RegisterPage';
+import {PageNotFound} from '@/pages/NotFound/NotFoundPage';
+import { WelcomePage } from "@/pages/onboarding/WelcomePage";
 
     export const router = createBrowserRouter([
     {
@@ -21,4 +22,8 @@
         path: "*",
         element: <PageNotFound />,
     },
+    {
+        path:'/onboarding/welcome',
+        element:<WelcomePage/>
+    }
     ]);

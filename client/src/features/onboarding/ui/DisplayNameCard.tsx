@@ -1,0 +1,131 @@
+import { User, ArrowRight, ArrowLeft } from "lucide-react";
+
+export function DisplayNameCard() {
+  return (
+    <div className="w-full max-w-xl">
+      {/* Step */}
+      <p className="text-lg font-semibold text-orange-500">
+        Step 2 of 7
+      </p>
+
+      {/* Progress */}
+      <div className="mt-4 flex gap-2">
+        <div className="h-1.5 w-14 rounded-full bg-orange-500" />
+        <div className="h-1.5 w-14 rounded-full bg-orange-500" />
+        <div className="h-1.5 w-14 rounded-full bg-slate-200" />
+        <div className="h-1.5 w-14 rounded-full bg-slate-200" />
+        <div className="h-1.5 w-14 rounded-full bg-slate-200" />
+        <div className="h-1.5 w-14 rounded-full bg-slate-200" />
+        <div className="h-1.5 w-14 rounded-full bg-slate-200" />
+      </div>
+
+      {/* Heading */}
+      <h1 className="mt-10 text-6xl font-black leading-tight text-slate-900">
+        What's your{" "}
+        <span className="text-orange-500">
+          display name?
+        </span>
+      </h1>
+
+      {/* Subtitle */}
+      <p className="mt-5 text-xl leading-relaxed text-slate-500">
+        This is how people will see you on your profile.
+      </p>
+
+      {/* Form */}
+      <form className="mt-12 space-y-4">
+        <div>
+          <label className="mb-3 block text-sm font-semibold text-slate-700">
+            Display Name
+          </label>
+
+          <div
+            className="
+              flex
+              h-16
+              items-center
+              gap-4
+              rounded-2xl
+              border
+              border-slate-200
+              bg-white
+              px-5
+              transition-all
+              duration-300
+              focus-within:border-orange-500
+              focus-within:ring-4
+              focus-within:ring-orange-100
+            "
+          >
+            <User className="h-5 w-5 text-slate-400" />
+
+            <input
+              type="text"
+              placeholder="Aman Sen"
+              className="
+                h-full
+                w-full
+                bg-transparent
+                text-lg
+                outline-none
+                placeholder:text-slate-400
+              "
+            />
+          </div>
+        </div>
+
+        <p className="text-sm text-slate-400">
+          You can change this later anytime.
+        </p>
+
+        {/* Buttons */}
+        <div className="mt-16 flex items-center justify-between">
+          <button
+            type="button"
+            className="
+              flex
+              h-14
+              items-center
+              gap-2
+              rounded-2xl
+              border
+              border-slate-200
+              px-8
+              font-semibold
+              text-slate-700
+              transition-all
+              duration-300
+              hover:-translate-y-0.5
+              hover:bg-slate-50
+            "
+          >
+            <ArrowLeft className="h-5 w-5" />
+            Back
+          </button>
+
+          <button
+            type="submit"
+            className="
+              flex
+              h-14
+              items-center
+              gap-2
+              rounded-2xl
+              bg-orange-500
+              px-10
+              font-semibold
+              text-white
+              transition-all
+              duration-300
+              hover:-translate-y-0.5
+              hover:bg-orange-600
+            "
+          >
+            Next
+            <ArrowRight className="h-5 w-5" />
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
