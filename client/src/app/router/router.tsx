@@ -7,6 +7,7 @@ import { WelcomePage } from "@/pages/onboarding/WelcomePage";
 import { DisplayNamePage } from "@/pages/onboarding/DisplayNamePage";
 import {UsernamePage} from '@/pages/onboarding/UsernamePage';
 import {AvatarPage} from '@/pages/onboarding/AvatarPage';
+import {BioPage} from '@/pages/onboarding/BioPage';
 
 
     export const router = createBrowserRouter([
@@ -40,5 +41,9 @@ import {AvatarPage} from '@/pages/onboarding/AvatarPage';
     {
         path:'/onboarding/avatar',
         element:<AvatarPage/>
+    },
+    {
+        path:'/onboarding/bio',
+        element:<BioPage/>
     }
     ]);
