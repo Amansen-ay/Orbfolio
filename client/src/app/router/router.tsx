@@ -6,6 +6,8 @@ import {PageNotFound} from '@/pages/NotFound/NotFoundPage';
 import { WelcomePage } from "@/pages/onboarding/WelcomePage";
 import { DisplayNamePage } from "@/pages/onboarding/DisplayNamePage";
 import {UsernamePage} from '@/pages/onboarding/UsernamePage';
+import {AvatarPage} from '@/pages/onboarding/AvatarPage';
+
 
     export const router = createBrowserRouter([
     {
@@ -34,5 +36,9 @@ import {UsernamePage} from '@/pages/onboarding/UsernamePage';
     },{
         path:'/onboarding/username',
         element:<UsernamePage />
+    },
+    {
+        path:'/onboarding/avatar',
+        element:<AvatarPage/>
     }
     ]);
