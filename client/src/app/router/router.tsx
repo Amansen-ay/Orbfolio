@@ -10,6 +10,7 @@ import {AvatarPage} from '@/pages/onboarding/AvatarPage';
 import {BioPage} from '@/pages/onboarding/BioPage';
 import {LocationPage} from '@/pages/onboarding/LocationPage';
 import {BirthdayPage} from '@/pages/onboarding/BirthdayPage'
+import {OnboardingCompletePage} from '@/pages/onboardingComplete/OnboardingCompletePage'
 
 
     export const router = createBrowserRouter([
@@ -55,5 +56,8 @@ import {BirthdayPage} from '@/pages/onboarding/BirthdayPage'
     {
         path:'/onboarding/dateofbirth',
         element:<BirthdayPage/>
+    },{
+        path:'onboarding/finished',
+        element:<OnboardingCompletePage/>
     }
     ]);
