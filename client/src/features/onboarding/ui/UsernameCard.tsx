@@ -3,8 +3,10 @@ import {
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
+import {useNavigate} from 'react-router-dom';
 
 export function UsernameCard() {
+    const navigate = useNavigate();
   return (
     <div className="w-full max-w-xl">
       {/* Step */}
@@ -135,6 +137,7 @@ export function UsernameCard() {
             hover:-translate-y-0.5
             hover:bg-slate-50
           "
+          onClick={()=>navigate('/onboarding/displayname')}
         >
           <ArrowLeft size={18} />
           Back
@@ -157,6 +160,7 @@ export function UsernameCard() {
             hover:-translate-y-0.5
             hover:bg-orange-600
           "
+          onClick={()=>navigate('/onboarding/avatar')}
         >
           Next
           <ArrowRight size={18} />

@@ -2,8 +2,10 @@ import {
   ArrowLeft,
   ArrowRight,
 } from "lucide-react";
+import {useNavigate} from 'react-router-dom';
 
 export function BioCard() {
+    const navigate = useNavigate();
   return (
     <div className="mt-15 w-full max-w-xl">
       {/* Step */}
@@ -103,6 +105,7 @@ export function BioCard() {
             hover:-translate-y-0.5
             hover:bg-slate-50
           "
+          onClick={()=>navigate('/onboarding/avatar')}
         >
           <ArrowLeft size={18} />
           Back
@@ -111,25 +114,6 @@ export function BioCard() {
         {/* Right Buttons */}
 
         <div className="flex gap-4">
-          <button
-            type="button"
-            className="
-              h-14
-              rounded-2xl
-              border
-              border-slate-200
-              px-8
-              font-semibold
-              text-slate-700
-              transition-all
-              duration-300
-              hover:-translate-y-0.5
-              hover:bg-slate-50
-            "
-          >
-            Skip for now
-          </button>
-
           <button
             type="submit"
             className="
@@ -147,6 +131,7 @@ export function BioCard() {
               hover:-translate-y-0.5
               hover:bg-orange-600
             "
+            onClick={()=>navigate('/onboarding/location')}
           >
             Next
 

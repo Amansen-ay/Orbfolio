@@ -1,7 +1,9 @@
 import { ArrowLeft, ArrowRight, LockKeyhole } from "lucide-react";
 import { PreviewPhone } from "./ui/PreviewPhone";
+import {useNavigate} from 'react-router-dom';
 
 export function ProfilePreviewPage() {
+    const navigate = useNavigate();
   return (
     <main
       className="
@@ -32,6 +34,7 @@ export function ProfilePreviewPage() {
             hover:-translate-y-0.5
             hover:bg-slate-50
           "
+          onClick={()=>navigate('/onboarding/finished')}
         >
           <ArrowLeft size={18} />
           Back to Setup
@@ -195,6 +198,7 @@ export function ProfilePreviewPage() {
             hover:-translate-y-0.5
             hover:bg-slate-50
           "
+          onClick={()=>navigate('/onboarding/finished')}
         >
           <ArrowLeft size={19} />
           Back to Setup

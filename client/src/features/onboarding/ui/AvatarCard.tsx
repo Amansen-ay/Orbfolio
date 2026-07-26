@@ -3,8 +3,10 @@ import {
   ArrowRight,
   CloudUpload,
 } from "lucide-react";
+import {useNavigate} from 'react-router-dom';
 
 export function AvatarCard() {
+    const navigate = useNavigate()
   return (
     <div className="w-full max-w-xl">
       {/* Step */}
@@ -129,6 +131,7 @@ export function AvatarCard() {
             hover:-translate-y-0.5
             hover:bg-slate-50
           "
+          onClick={()=>navigate('/onboarding/username')}
         >
           <ArrowLeft size={18} />
           Back
@@ -152,6 +155,7 @@ export function AvatarCard() {
               hover:-translate-y-0.5
               hover:bg-slate-50
             "
+            onClick={()=>navigate('/onboarding/bio')}
           >
             Skip for now
           </button>
@@ -173,6 +177,7 @@ export function AvatarCard() {
               hover:-translate-y-0.5
               hover:bg-orange-600
             "
+            onClick={()=>navigate('/onboarding/bio')}
           >
             Next
 

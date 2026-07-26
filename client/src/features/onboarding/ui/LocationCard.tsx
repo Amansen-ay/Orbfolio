@@ -4,7 +4,9 @@ import {
   ChevronDown,
 } from "lucide-react";
 
+import {useNavigate} from 'react-router-dom';
 export function LocationCard() {
+    const navigate = useNavigate();
   return (
     <div className="w-full max-w-xl">
       {/* Step */}
@@ -157,31 +159,13 @@ export function LocationCard() {
             hover:-translate-y-0.5
             hover:bg-slate-50
           "
+          onClick={()=>navigate('/onboarding/bio')}
         >
           <ArrowLeft size={18} />
           Back
         </button>
 
         <div className="flex gap-4">
-          <button
-            type="button"
-            className="
-              h-14
-              rounded-2xl
-              border
-              border-slate-200
-              px-8
-              font-semibold
-              text-slate-700
-              transition-all
-              duration-300
-              hover:-translate-y-0.5
-              hover:bg-slate-50
-            "
-          >
-            Skip for now
-          </button>
-
           <button
             type="submit"
             className="
@@ -199,6 +183,7 @@ export function LocationCard() {
               hover:-translate-y-0.5
               hover:bg-orange-600
             "
+            onClick={()=>navigate('/onboarding/dateofbirth')}
           >
             Next
             <ArrowRight size={18} />

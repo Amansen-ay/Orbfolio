@@ -4,8 +4,11 @@ import {
   Sparkles,
   UserRound,
 } from "lucide-react";
+import {useNavigate} from 'react-router-dom';
 
 export function WelcomeCard() {
+    const navigate = useNavigate();
+
   return (
     <div className="max-w-xl">
 
@@ -106,6 +109,7 @@ export function WelcomeCard() {
           hover:-translate-y-1
           hover:bg-orange-600
         "
+        onClick={()=>navigate('/onboarding/displayname')}
       >
         Let's Get Started
 

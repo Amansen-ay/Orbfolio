@@ -3,8 +3,10 @@ import {
   ArrowRight,
   CalendarDays,
 } from "lucide-react";
+import {useNavigate} from 'react-router-dom';
 
 export function BirthdayCard() {
+    const navigate = useNavigate();
   return (
     <div className="mt-[-35px] w-full max-w-xl">
       {/* Step */}
@@ -105,6 +107,7 @@ export function BirthdayCard() {
             hover:-translate-y-0.5
             hover:bg-slate-50
           "
+          onClick={()=>navigate('/onboarding/location')}
         >
           <ArrowLeft size={18} />
           Back
@@ -128,6 +131,7 @@ export function BirthdayCard() {
               hover:-translate-y-0.5
               hover:bg-slate-50
             "
+            onClick={()=>navigate('/onboarding/finished')}
           >
             Skip for now
           </button>
@@ -149,6 +153,7 @@ export function BirthdayCard() {
               hover:-translate-y-0.5
               hover:bg-orange-600
             "
+            onClick={()=>navigate('/onboarding/finished')}
           >
             Finish Setup
 
