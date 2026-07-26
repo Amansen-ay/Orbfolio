@@ -1,7 +1,8 @@
+import { MapPin } from "lucide-react";
 export function ProfilePreview() {
-  return (
-    <div
-      className="
+    return (
+        <div
+            className="
         relative
         w-[310px]
         rounded-[34px]
@@ -11,55 +12,52 @@ export function ProfilePreview() {
         p-8
         shadow-[0_35px_80px_rgba(15,23,42,0.12)]
       "
-    >
-      {/* Avatar */}
+        >
+            {/* Avatar */}
 
-      <div className="mx-auto h-24 w-24 overflow-hidden rounded-full border-4 border-orange-200">
-        <img
-          src="https://i.pravatar.cc/200"
-          alt="Profile"
-          className="h-full w-full object-cover"
-        />
-      </div>
+            <div className="mx-auto h-24 w-24 overflow-hidden rounded-full border-4 border-orange-200">
+                <img
+                    src="https://i.pravatar.cc/200"
+                    alt="Profile"
+                    className="h-full w-full object-cover"
+                />
+            </div>
 
-      {/* Name */}
+            {/* Name */}
 
-      <h2 className="mt-5 text-center text-2xl font-bold text-slate-900">
-        Aman Sen
-      </h2>
+            <h2 className="mt-4 text-center text-2xl font-bold text-slate-900">
+                Aman Sen
+            </h2>
 
-      {/* Username */}
+            {/* Username */}
 
-      <p className="mt-1 text-center text-sm font-medium text-orange-500">
-        @amansen
-      </p>
+            <p className="mt-1 text-center text-sm font-medium text-orange-500">
+                @amansen
+            </p>
 
-      {/* Bio */}
+            {/* Bio */}
 
-      <p className="mt-6 text-center text-sm leading-7 text-slate-500">
-        Full Stack Developer passionate about building beautiful digital
-        experiences and modern web applications.
-      </p>
+            <p className="mt-4 text-center text-sm leading-7 text-slate-500">
+                Full Stack Developer passionate about building beautiful digital
+                experiences and modern web applications.
+            </p>
 
-      {/* Divider */}
+            {/* Divider */}
 
-      <div className="my-8 h-px bg-slate-100" />
+            <div className="my-5 h-px bg-slate-100" />
 
-      {/* Location */}
+            {/* Location */}
 
-      <div className="flex items-center justify-center gap-2">
-        <span className="text-lg">📍</span>
+            <div className="flex items-center justify-center gap-2 text-slate-600">
+                <MapPin size={18} className="text-orange-500" />
+                <span>Uttar Pradesh, India</span>
+            </div>
 
-        <span className="text-sm text-slate-600">
-          Uttar Pradesh, India
-        </span>
-      </div>
+            {/* Links */}
 
-      {/* Links */}
-
-      <div className="mt-8 space-y-3">
-        <button
-          className="
+            <div className="mt-8 space-y-3">
+                <button
+                    className="
             h-12
             w-full
             rounded-2xl
@@ -67,12 +65,12 @@ export function ProfilePreview() {
             font-medium
             text-white
           "
-        >
-          Portfolio
-        </button>
+                >
+                    Portfolio
+                </button>
 
-        <button
-          className="
+                <button
+                    className="
             h-12
             w-full
             rounded-2xl
@@ -82,12 +80,12 @@ export function ProfilePreview() {
             font-medium
             text-slate-700
           "
-        >
-          GitHub
-        </button>
+                >
+                    GitHub
+                </button>
 
-        <button
-          className="
+                <button
+                    className="
             h-12
             w-full
             rounded-2xl
@@ -97,12 +95,12 @@ export function ProfilePreview() {
             font-medium
             text-slate-700
           "
-        >
-          LinkedIn
-        </button>
+                >
+                    LinkedIn
+                </button>
 
-        <button
-          className="
+                <button
+                    className="
             h-12
             w-full
             rounded-2xl
@@ -112,10 +110,10 @@ export function ProfilePreview() {
             font-medium
             text-slate-700
           "
-        >
-          Contact
-        </button>
-      </div>
-    </div>
-  );
+                >
+                    Contact
+                </button>
+            </div>
+        </div>
+    );
 }
