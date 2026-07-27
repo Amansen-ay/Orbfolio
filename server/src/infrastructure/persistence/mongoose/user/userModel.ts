@@ -1,10 +1,11 @@
 import mongoose from "mongoose";
 
 interface UserDocument {
-    firstName: string;
-    lastName: string;
-    email: string;
-    passwordHash: string;
+    id:string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    passwordHash: string,
     username?:string,
     displayName?:string,
     bio?:string,
@@ -12,12 +13,18 @@ interface UserDocument {
     country?:string,
     state?:string,
     dateOfBirth?:Date,
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: Date,
+    updatedAt: Date,
 }
 
 export const userSchema = new mongoose.Schema<UserDocument>(
     {
+        id:{
+            type:String,
+            required:true,
+            unique:true
+
+        },
         firstName:{
             type:String,
             trim:true,
@@ -41,7 +48,9 @@ export const userSchema = new mongoose.Schema<UserDocument>(
         username:{
             type:String,
             trim:true,
-            unique:true
+            unique:true,
+            sparse:true,
+            required:false
         },
         displayName:{
             type:String,
@@ -68,7 +77,8 @@ export const userSchema = new mongoose.Schema<UserDocument>(
         }
     },
     {
-        timestamps: true
+        timestamps: true,
+        id:false
     }
 )
 

@@ -45,8 +45,8 @@ export default class MongooseUserRepository implements UserRepository {
             updatedAt: savedUser.updatedAt
         }
     }
-    async findById(Id: string): Promise<User | null> {
-        const user = await UserModel.findById(Id);
+    async findById(id: string): Promise<User | null> {
+        const user = await UserModel.findOne({id});
 
         if (!user) {
             return null;
@@ -71,7 +71,7 @@ export default class MongooseUserRepository implements UserRepository {
     }
     async update(user: User): Promise<User> {
 
-        const updatedUser = await UserModel.findByIdAndUpdate(user.id, user, { new: true });
+        const updatedUser = await UserModel.findOneAndUpdate({id:user.id}, user, { new: true });
         if (!updatedUser) {
             throw new Error("user not found")
         }

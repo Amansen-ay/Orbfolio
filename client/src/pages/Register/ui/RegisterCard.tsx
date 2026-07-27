@@ -1,8 +1,77 @@
 import { FiMail, FiLock } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { useState } from 'react';
+import axios from 'axios';
 
 export function RegisterCard() {
+    const [email, setEmail] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [agreedToTerms, setAgreedToTerms] = useState(false);
+    const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+
+    async function handleSubmit(
+        e: React.SyntheticEvent<HTMLFormElement>
+    ) {
+        e.preventDefault();
+
+        setError("");
+
+        if (
+            !firstName.trim() ||
+            !lastName.trim() ||
+            !email.trim() ||
+            !password ||
+            !confirmPassword
+        ) {
+            setError("Please fill in all fields.");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            setError("Passwords do not match.");
+            return;
+        }
+
+        if (!agreedToTerms) {
+            setError(
+                "Please agree to the Terms of Service and Privacy Policy."
+            );
+            return;
+        }
+
+        // Axios api call
+
+        try {
+            setIsLoading(true);
+
+            const response = await axios.post(
+                "http://localhost:3000/users/register",
+                {
+                    firstName: firstName.trim(),
+                    lastName: lastName.trim(),
+                    email: email.trim(),
+                    password,
+                }
+            );
+
+            console.log(response.data);
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                console.log("STATUS:", error.response?.status);
+                console.log("BACKEND DATA:", error.response?.data);
+            } else {
+                console.error(error);
+            }
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
     return (
         <section className="flex justify-center lg:justify-end">
             <div className="w-full max-w-lg rounded-[32px] border border-gray-200/70 bg-white p-10 shadow-[0_30px_80px_rgba(15,23,42,0.08)]">
@@ -20,7 +89,7 @@ export function RegisterCard() {
                     </p>
                 </div>
 
-                <form className="mt-6 space-y-6">
+                <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
@@ -48,6 +117,8 @@ export function RegisterCard() {
         focus:ring-4
         focus:ring-orange-100
       "
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
                             />
                         </div>
 
@@ -76,6 +147,8 @@ export function RegisterCard() {
         focus:ring-4
         focus:ring-orange-100
       "
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
                             />
                         </div>
                     </div>
@@ -99,6 +172,7 @@ export function RegisterCard() {
       focus-within:ring-4
       focus-within:ring-orange-100
     "
+
                         >
                             <FiMail className="text-xl text-slate-400" />
 
@@ -106,6 +180,8 @@ export function RegisterCard() {
                                 type="email"
                                 placeholder="you@example.com"
                                 className="ml-3 w-full bg-transparent outline-none"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                     </div>
@@ -140,9 +216,11 @@ export function RegisterCard() {
                                 type="password"
                                 placeholder="Enter your password"
                                 className="ml-3 w-full bg-transparent outline-none"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
-                        
+
                     </div>
 
                     {/* confirm password */}
@@ -178,6 +256,8 @@ export function RegisterCard() {
                                 type="password"
                                 placeholder="Confirm your password"
                                 className="ml-3 w-full bg-transparent outline-none"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
                             />
                         </div>
                     </div>
@@ -187,14 +267,21 @@ export function RegisterCard() {
                             <input
                                 type="checkbox"
                                 className="h-4 w-4 rounded border-slate-300 text-orange-500 focus:ring-orange-500"
+                                checked={agreedToTerms}
+                                onChange={(e) => setAgreedToTerms(e.target.checked)}
                             />
 
                             I agree to the Terms of Service and Privacy Policy
                         </label>
                     </div>
+                    {error && (
+                        <p className="text-sm font-medium text-red-500">
+                            {error}
+                        </p>
+                    )}
 
-                    <button className="h-14 w-full rounded-2xl bg-orange-500 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-600">
-                        Register
+                    <button disabled={isLoading} className="h-14 w-full rounded-2xl bg-orange-500 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-600">
+                        {isLoading ? "Creating account...." : "Register"}
                     </button>
 
                     <div className="mt-1 mb-5 flex items-center">

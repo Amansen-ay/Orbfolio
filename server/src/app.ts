@@ -1,8 +1,15 @@
 import express from "express";
 import userRouter from './interfaces/http/user/userRoutes.js';
 import linkRouter from './interfaces/http/links/linkRoutes.js'; 
+import cors from "cors";
 
 const app = express();
+
+app.use(
+    cors({
+        origin: "http://localhost:5173",
+    })
+);
 
 app.use(express.json());
 
