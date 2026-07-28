@@ -1,7 +1,7 @@
-import {tokenProvider} from '../../../compositions/user/userComposition.js';
+import { tokenProvider } from '../../../compositions/user/userComposition.js';
 import { RequestHandler } from "express";
 
-export const authMiddleware:RequestHandler = (req,res,next): void => {
+export const authMiddleware: RequestHandler = (req, res, next): void => {
 
     const authHeader = req.headers.authorization;
 
@@ -9,19 +9,19 @@ export const authMiddleware:RequestHandler = (req,res,next): void => {
         throw new Error("Invalid authorization header")
     }
 
-    const [bearer,token] = authHeader.split(" ");
+    const [bearer, token] = authHeader.split(" ");
 
-    if(bearer!=="Bearer"){
+    if (bearer !== "Bearer") {
         throw new Error("Invalid authorization header")
     }
-    if(!token){
+    if (!token) {
         throw new Error("Invalid authorization header")
     }
-
+    
     const payload = tokenProvider.verifyToken(token);
 
     req.user = payload;
-    
+
     next()
 
 }

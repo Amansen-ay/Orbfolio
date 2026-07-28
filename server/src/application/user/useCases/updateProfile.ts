@@ -33,6 +33,11 @@ export class UpdateProfile {
                 throw new Error("Username already taken!");
             }
         }
+        if (input.username && !/^[a-zA-Z0-9_]+$/.test(input.username)) {
+            throw new Error(
+                "Username can only contain letters, numbers, and underscores"
+            );
+        }
 
         const user = await this.userRepository.findById(input.userId);
 
@@ -41,7 +46,7 @@ export class UpdateProfile {
         }
 
         if (input.username !== undefined) {
-            user.username = input.username;
+            user.username = input.username.trim().toLowerCase();
         }
         if (input.displayName !== undefined) {
             user.displayName = input.displayName

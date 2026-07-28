@@ -2,9 +2,14 @@ import { FiMail, FiLock } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { useState } from 'react';
-import axios from 'axios';
+import { api } from '@/shared/api/axiosInstance';
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/features/auth/model/AuthContext";
+import axios from "axios";
 
 export function RegisterCard() {
+    const navigate = useNavigate();
+    const { setAuth } = useAuth();
     const [email, setEmail] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -49,8 +54,8 @@ export function RegisterCard() {
         try {
             setIsLoading(true);
 
-            const response = await axios.post(
-                "http://localhost:3000/users/register",
+            const response = await api.post(
+                "users/register",
                 {
                     firstName: firstName.trim(),
                     lastName: lastName.trim(),
@@ -59,7 +64,9 @@ export function RegisterCard() {
                 }
             );
 
-            console.log(response.data);
+            setAuth(response.data.token, response.data.user);
+
+            navigate("/onboarding/welcome");
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 console.log("STATUS:", error.response?.status);
