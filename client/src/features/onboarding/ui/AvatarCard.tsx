@@ -277,7 +277,7 @@ export function AvatarCard() {
             "
             onClick={handleSubmit}
           >
-            {isLoading?"setting up...":"Next"}
+            {isLoading?"Setting up...":"Next"}
 
             <ArrowRight size={18} />
           </button>
