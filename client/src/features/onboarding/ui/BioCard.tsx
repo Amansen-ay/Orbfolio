@@ -3,6 +3,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import {useNavigate} from 'react-router-dom';
+import {useState} from 
 
 export function BioCard() {
     const navigate = useNavigate();

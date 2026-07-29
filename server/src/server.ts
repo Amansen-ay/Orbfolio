@@ -1,11 +1,10 @@
+import "./config/env.js";
 import app from "./app.js";
 import dbConnect from './infrastructure/database/mongoose.js'
-import dotenv from 'dotenv';
 import dns from 'node:dns'
 
 dns.setServers(["1.1.1.1","8.8.8.8"])
 
-dotenv.config();
 
 const startServer = async (): Promise<void> => {
 

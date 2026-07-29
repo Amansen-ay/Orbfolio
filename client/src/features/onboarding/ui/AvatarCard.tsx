@@ -3,10 +3,70 @@ import {
   ArrowRight,
   CloudUpload,
 } from "lucide-react";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { api } from '@/shared/api/axiosInstance';
+import { useAuth } from '@/features/auth/model/AuthContext';
+import axios from 'axios';
+import Cropper from "react-easy-crop";
 
 export function AvatarCard() {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { token } = useAuth();
+  const [avatarFile, setAvatarFile] = useState<File | null>(null)
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const [isLoading,setIsLoading] = useState(false);
+  const [error,setError] = useState("");
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+
+  async function handleAvatarSubmit(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (!file) {
+      return
+    }
+    setAvatarFile(file);
+    const previewUrl = URL.createObjectURL(file);
+    setAvatarPreview(previewUrl);
+  }
+
+  async function handleSubmit() {
+    if (!avatarFile) {
+      console.log("No avatar selected");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("avatar", avatarFile);
+
+    try {
+      
+      setIsLoading(true)
+
+      const response = await api.patch(
+        "/users/me",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log("Avatar response:", response.data);
+
+      navigate("/onboarding/bio");
+
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log("STATUS:", error.response?.status);
+        console.log("BACKEND:", error.response?.data);
+      } else {
+        console.error(error);
+      }
+    }
+  }
+
   return (
     <div className="w-full max-w-xl">
       {/* Step */}
@@ -69,12 +129,28 @@ export function AvatarCard() {
           type="file"
           accept="image/png,image/jpeg,image/webp"
           className="hidden"
+          onChange={handleAvatarSubmit}
         />
 
         {/* Upload Icon */}
-
-        <div
-          className="
+        {
+          avatarPreview ?
+            <div className="relative h-full w-full overflow-hidden rounded-3xl">
+              <Cropper
+                image={avatarPreview}
+                crop={crop}
+                zoom={zoom}
+                aspect={1}
+                cropShape="round"
+                showGrid={false}
+                onCropChange={setCrop}
+                onZoomChange={setZoom}
+              />
+            </div>
+            :
+            <>
+              <div
+                className="
             flex
             h-20
             w-20
@@ -84,23 +160,44 @@ export function AvatarCard() {
             bg-white
             shadow-md
           "
-        >
-          <CloudUpload
-            size={34}
-            className="text-orange-500"
+              >
+                <CloudUpload
+                  size={34}
+                  className="text-orange-500"
+                />
+              </div>
+
+              {/* Text */}
+
+              <p className="mt-8 text-lg font-semibold text-slate-700">
+                Drag & drop your image here
+              </p>
+
+              <p className="mt-2 text-base text-slate-500">
+                or click to browse
+              </p>
+            </>
+
+        }
+      </label>
+
+      {avatarPreview && (
+        <div className="mt-5">
+          <label className="mb-2 block text-sm font-semibold text-slate-700">
+            Zoom
+          </label>
+
+          <input
+            type="range"
+            min={1}
+            max={3}
+            step={0.1}
+            value={zoom}
+            onChange={(e) => setZoom(Number(e.target.value))}
+            className="w-full"
           />
         </div>
-
-        {/* Text */}
-
-        <p className="mt-8 text-lg font-semibold text-slate-700">
-          Drag & drop your image here
-        </p>
-
-        <p className="mt-2 text-base text-slate-500">
-          or click to browse
-        </p>
-      </label>
+      )}
 
       {/* File Info */}
 
@@ -131,7 +228,7 @@ export function AvatarCard() {
             hover:-translate-y-0.5
             hover:bg-slate-50
           "
-          onClick={()=>navigate('/onboarding/username')}
+          onClick={() => navigate('/onboarding/username')}
         >
           <ArrowLeft size={18} />
           Back
@@ -155,13 +252,14 @@ export function AvatarCard() {
               hover:-translate-y-0.5
               hover:bg-slate-50
             "
-            onClick={()=>navigate('/onboarding/bio')}
+            onClick={() => navigate('/onboarding/bio')}
           >
             Skip for now
           </button>
 
           <button
-            type="submit"
+            type="button"
+            disabled={isLoading}
             className="
               flex
               h-14
@@ -177,9 +275,9 @@ export function AvatarCard() {
               hover:-translate-y-0.5
               hover:bg-orange-600
             "
-            onClick={()=>navigate('/onboarding/bio')}
+            onClick={handleSubmit}
           >
-            Next
+            {isLoading?"setting up...":"Next"}
 
             <ArrowRight size={18} />
           </button>
