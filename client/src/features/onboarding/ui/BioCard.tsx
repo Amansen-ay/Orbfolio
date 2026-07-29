@@ -48,7 +48,7 @@ export function BioCard() {
         console.log("BACKEND DATA:", error.response?.data);
         setError(
           error.response?.data?.message ??
-          "Failed to save username."
+          "Failed to save bio."
         );
       } else {
         console.error(error);

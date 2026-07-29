@@ -3,10 +3,79 @@ import {
   ArrowRight,
   ChevronDown,
 } from "lucide-react";
+import { Country, State } from "country-state-city";
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { api } from '@/shared/api/axiosInstance';
+import { useAuth } from '@/features/auth/model/AuthContext';
+import axios from 'axios';
 
-import {useNavigate} from 'react-router-dom';
+
 export function LocationCard() {
-    const navigate = useNavigate();
+  const [countryCode, setCountryCode] = useState("");
+  const [stateCode, setStateCode] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const countries = Country.getAllCountries();
+  const { token } = useAuth();
+  const states = countryCode
+    ? State.getStatesOfCountry(countryCode)
+    : [];
+
+  const navigate = useNavigate();
+
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError("");
+    if (!countryCode) {
+      setError("Please select the country")
+      return
+    }
+    if (!stateCode) {
+      setError("Please select the state")
+      return
+    }
+    const selectedCountry = Country.getCountryByCode(countryCode);
+
+    const selectedState = State.getStateByCodeAndCountry(
+      stateCode,
+      countryCode
+    );
+    if (!selectedCountry || !selectedState) {
+      setError("Invalid location selected");
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      await api.patch('/users/me', {
+        country: selectedCountry.name,
+        state: selectedState.name,
+      },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+      navigate('/onboarding/dateofbirth')
+    }
+    catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log("STATUS:", error.response?.status);
+        console.log("BACKEND DATA:", error.response?.data);
+        setError(
+          error.response?.data?.message ??
+          "Failed to save location."
+        );
+      } else {
+        console.error(error);
+        setError("Something went wrong.");
+      }
+    } finally {
+      setIsLoading(false);
+    }
+
+  }
   return (
     <div className="w-full max-w-xl">
       {/* Step */}
@@ -69,11 +138,23 @@ export function LocationCard() {
               focus:ring-4
               focus:ring-orange-100
             "
+            value={countryCode}
+            onChange={(e) => {
+              setCountryCode(e.target.value);
+              setStateCode("");
+              setError("")
+            }}
           >
-            <option>🇮🇳 India</option>
-            <option>🇺🇸 United States</option>
-            <option>🇨🇦 Canada</option>
-            <option>🇬🇧 United Kingdom</option>
+            <option value="">Select your country</option>
+
+            {countries.map((country) => (
+              <option
+                key={country.isoCode}
+                value={country.isoCode}
+              >
+                {country.name}
+              </option>
+            ))}
           </select>
 
           <ChevronDown
@@ -89,6 +170,10 @@ export function LocationCard() {
           />
         </div>
       </div>
+      <div className="mt-[10px] text-sm font-medium text-red-600">
+        {error === "Please select the country" && "Please select the country"}
+      </div>
+
 
       {/* State */}
 
@@ -117,12 +202,26 @@ export function LocationCard() {
               focus:ring-4
               focus:ring-orange-100
             "
+            value={stateCode}
+            onChange={(e) => {
+              setStateCode(e.target.value)
+              setError("")
+            }
+            }
+            disabled={!countryCode}
           >
-            <option>Uttar Pradesh</option>
-            <option>Delhi</option>
-            <option>Maharashtra</option>
-            <option>Karnataka</option>
+            <option value="">Select your state</option>
+
+            {states.map((state) => (
+              <option
+                key={state.isoCode}
+                value={state.isoCode}
+              >
+                {state.name}
+              </option>
+            ))}
           </select>
+
 
           <ChevronDown
             size={20}
@@ -137,10 +236,13 @@ export function LocationCard() {
           />
         </div>
       </div>
+      <div className="mt-[10px] text-sm font-medium text-red-600">
+        {error === "Please select the state" && "Please select the state"}
+      </div>
 
       {/* Buttons */}
 
-      <div className="mb-14 mt-10 flex items-center justify-between">
+      <form onSubmit={handleSubmit} className="mb-14 mt-10 flex items-center justify-between">
         <button
           type="button"
           className="
@@ -159,7 +261,7 @@ export function LocationCard() {
             hover:-translate-y-0.5
             hover:bg-slate-50
           "
-          onClick={()=>navigate('/onboarding/bio')}
+          onClick={() => navigate('/onboarding/bio')}
         >
           <ArrowLeft size={18} />
           Back
@@ -168,6 +270,7 @@ export function LocationCard() {
         <div className="flex gap-4">
           <button
             type="submit"
+            disabled={isLoading}
             className="
               flex
               h-14
@@ -183,13 +286,13 @@ export function LocationCard() {
               hover:-translate-y-0.5
               hover:bg-orange-600
             "
-            onClick={()=>navigate('/onboarding/dateofbirth')}
+
           >
-            Next
+            {isLoading ? "Setting up..." : "Next"}
             <ArrowRight size={18} />
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
