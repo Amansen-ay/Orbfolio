@@ -3,10 +3,71 @@ import {
   ArrowRight,
   CalendarDays,
 } from "lucide-react";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { api } from '@/shared/api/axiosInstance';
+import { useAuth } from '@/features/auth/model/AuthContext';
+import { useState } from 'react';
+
 
 export function BirthdayCard() {
-    const navigate = useNavigate();
+  const [dateOfBirth, setDateOfBirth] = useState<Date | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const { token } = useAuth();
+
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    setError("");
+    if (!dateOfBirth) {
+      setError("Please select your date of birth or skip for now.");
+      return;
+    }
+    if (dateOfBirth && dateOfBirth > new Date()) {
+      setError("Please select valid date of birth")
+      return
+    }
+    const today = new Date();
+
+    const minimumDate = new Date(
+      today.getFullYear() - 13,
+      today.getMonth(),
+      today.getDate()
+    );
+
+    if (dateOfBirth > minimumDate) {
+      setError("You must be at least 13 years old.");
+      return;
+    }
+    try {
+      setIsLoading(true);
+      await api.patch('/users/me', {
+        dateOfBirth
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      navigate('/onboarding/finished');
+    }
+    catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log("STATUS:", error.response?.status);
+        console.log("BACKEND DATA:", error.response?.data);
+        setError(
+          error.response?.data?.message ??
+          "Failed to save date of birth."
+        );
+      } else {
+        console.error(error);
+        setError("Something went wrong.");
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }
+  const navigate = useNavigate();
   return (
     <div className="mt-[-35px] w-full max-w-xl">
       {/* Step */}
@@ -80,8 +141,16 @@ export function BirthdayCard() {
               focus:ring-4
               focus:ring-orange-100
             "
+            onChange={(e) => {
+              setDateOfBirth(e.target.valueAsDate)
+              setError("")
+            }}
           />
         </div>
+      </div>
+
+      <div className="mt-[10px] text-sm font-medium text-red-600">
+        {error}
       </div>
 
       {/* Buttons */}
@@ -107,7 +176,7 @@ export function BirthdayCard() {
             hover:-translate-y-0.5
             hover:bg-slate-50
           "
-          onClick={()=>navigate('/onboarding/location')}
+          onClick={() => navigate('/onboarding/location')}
         >
           <ArrowLeft size={18} />
           Back
@@ -115,7 +184,7 @@ export function BirthdayCard() {
 
         {/* Right Buttons */}
 
-        <div className="flex gap-4">
+        <form onSubmit={handleSubmit} className="flex gap-4">
           <button
             type="button"
             className="
@@ -131,13 +200,14 @@ export function BirthdayCard() {
               hover:-translate-y-0.5
               hover:bg-slate-50
             "
-            onClick={()=>navigate('/onboarding/finished')}
+            onClick={() => navigate('/onboarding/finished')}
           >
             Skip for now
           </button>
 
           <button
             type="submit"
+            disabled={isLoading}
             className="
               flex
               h-14
@@ -153,13 +223,13 @@ export function BirthdayCard() {
               hover:-translate-y-0.5
               hover:bg-orange-600
             "
-            onClick={()=>navigate('/onboarding/finished')}
+
           >
-            Finish Setup
+            {isLoading ? "Finishing..." : "Finish Setup"}
 
             <ArrowRight size={18} />
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );
