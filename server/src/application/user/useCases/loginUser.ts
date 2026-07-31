@@ -3,6 +3,7 @@ import type {PasswordHasher} from '../ports/passwordHasher.js';
 import type {TokenProvider} from '../ports/tokenProvider.js';
 import type {LoginInput} from '../loginInput.js';
 import type {LoginOutput} from '../loginOutput.js';
+import {AppError} from '../../errors/AppError.js';
 
 export class LoginUser {
     private  userRepository:UserRepository;
@@ -19,31 +20,50 @@ export class LoginUser {
         this.tokenProvider = tokenProvider;
     }
 
-    async execute(input:LoginInput):Promise<LoginOutput>{
+    async execute(input: LoginInput): Promise<LoginOutput> {
 
-        const existingUser = await this.userRepository.findByEmail(input.email);
+    const email = input.email?.trim().toLowerCase();
+    const password = input.password;
 
-        if(!existingUser){
-            throw new Error("Invalid email or password!")
-        }
-
-        const isMatched =  await this.passwordHasher.compare(input.password,existingUser.passwordHash);
-
-        if(!isMatched){
-            throw new Error("Invalid email or password!");
-        }
-        const token = this.tokenProvider.generateToken({email:existingUser.email,userId:existingUser.id});
-
-        return {
-            token:token,
-            user:{
-                id:existingUser.id,
-                firstName:existingUser.firstName,
-                lastName:existingUser.lastName,
-                email:existingUser.email
-            }
-        }
-
+    if (!email || !password) {
+        throw new AppError("Email and password are required.", 400);
     }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+        throw new AppError("Please enter a valid email address.", 400);
+    }
+
+    const existingUser = await this.userRepository.findByEmail(email);
+
+    if (!existingUser) {
+        throw new AppError("Invalid email or password!", 401);
+    }
+
+    const isMatched = await this.passwordHasher.compare(
+        password,
+        existingUser.passwordHash
+    );
+
+    if (!isMatched) {
+        throw new AppError("Invalid email or password!", 401);
+    }
+
+    const token = this.tokenProvider.generateToken({
+        email: existingUser.email,
+        userId: existingUser.id
+    });
+
+    return {
+        token,
+        user: {
+            id: existingUser.id,
+            firstName: existingUser.firstName,
+            lastName: existingUser.lastName,
+            email: existingUser.email
+        }
+    };
+}
 
 }
