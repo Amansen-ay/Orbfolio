@@ -2,6 +2,7 @@ import {
     createContext,
     useContext,
     useState,
+    useCallback,
     type ReactNode
 } from "react";
 
@@ -14,9 +15,10 @@ type User = {
 };
 
 type AuthContextType = {
-    token: string | null;
-    user: User | null;
-    setAuth: (token: string, user: User) => void;
+    token: string | null,
+    user: User | null,
+    setAuth: (token: string, user: User) => void,
+    logout: () => void
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -25,7 +27,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const [token, setToken] = useState<string | null>(() => {
         return localStorage.getItem("token");
     });
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<User | null>(() => {
+        const storedUser = localStorage.getItem("user");
+        return storedUser ?
+            JSON.parse(storedUser)
+            :
+            null;
+    });
 
     function setAuth(token: string, user: User) {
         setToken(token);
@@ -33,6 +41,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
     }
+    const logout = useCallback(() => {
+        setToken(null);
+        setUser(null);
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+    }, []);
 
     return (
         <AuthContext.Provider
@@ -40,6 +54,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 token,
                 user,
                 setAuth,
+                logout
             }}
         >
             {children}

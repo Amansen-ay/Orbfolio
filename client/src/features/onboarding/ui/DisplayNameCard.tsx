@@ -18,6 +18,10 @@ export function DisplayNameCard() {
       setError("Display name must be provided!")
       return
     }
+    if(displayName.length>50){
+      setError("Display name can not exceed 50 characters!")
+      return
+    }
     try {
 
       setIsLoading(true);
@@ -31,7 +35,7 @@ export function DisplayNameCard() {
       })
       navigate('/onboarding/username')
     }
-     catch (error) {
+    catch (error) {
     if (axios.isAxiosError(error)) {
       console.log("STATUS:", error.response?.status);
       console.log("BACKEND DATA:", error.response?.data);

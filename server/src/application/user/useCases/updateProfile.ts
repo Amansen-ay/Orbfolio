@@ -3,6 +3,7 @@ import type { UpdateProfileInput } from '../updateProfileInput.js';
 import type { User } from '../../../domain/user/user.js';
 import { MAX_DISPLAY_NAME_LENGTH, MAX_BIO_LENGTH, MIN_USERNAME_LENGTH, MAX_USERNAME_LENGTH } from '../../../domain/user/userConstants.js';
 import { updateProfileOutput } from '../updateProfileOutput.js';
+import {AppError} from '../../errors/AppError.js';
 
 
 export class UpdateProfile {
@@ -17,32 +18,32 @@ export class UpdateProfile {
     async execute(input: UpdateProfileInput): Promise<updateProfileOutput> {
 
         if (input.username !== undefined && (input.username.length > MAX_USERNAME_LENGTH || input.username.length < MIN_USERNAME_LENGTH)) {
-            throw new Error("username should atleast be 3 to 30 character long.")
+            throw new AppError("username should atleast be 3 to 30 character long.",400)
         }
 
         if (input.displayName !== undefined && input.displayName.length > MAX_DISPLAY_NAME_LENGTH) {
-            throw new Error("Display name cannot exceed 50 characters.");
+            throw new AppError("Display name cannot exceed 50 characters.",400);
         }
         if (input.bio !== undefined && input.bio.length > MAX_BIO_LENGTH) {
-            throw new Error("Bio cannot exceed 160 characters.")
+            throw new AppError("Bio cannot exceed 160 characters.",400)
         }
 
         if (input.username !== undefined) {
             const userWithUsername = await this.userRepository.findByUsername(input.username);
             if (userWithUsername && userWithUsername.id !== input.userId) {
-                throw new Error("Username already taken!");
+                throw new AppError("Username already taken!",409);
             }
         }
         if (input.username && !/^[a-zA-Z0-9_]+$/.test(input.username)) {
-            throw new Error(
-                "Username can only contain letters, numbers, and underscores"
+            throw new AppError(
+                "Username can only contain letters, numbers, and underscores",400
             );
         }
 
         const user = await this.userRepository.findById(input.userId);
 
         if (!user) {
-            throw new Error("User not found")
+            throw new AppError("User not found",404)
         }
 
         if (input.username !== undefined) {

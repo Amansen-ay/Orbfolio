@@ -12,6 +12,7 @@ import { LocationPage } from '@/pages/onboarding/LocationPage';
 import { BirthdayPage } from '@/pages/onboarding/BirthdayPage'
 import { OnboardingCompletePage } from '@/pages/onboardingComplete/OnboardingCompletePage';
 import { ProfilePreviewPage } from "@/pages/ProfilePreview/ProfilePreviewPage";
+import { ProtectedRoute } from "@/features/auth/ui/ProtectedRoute";
 
 
 export const router = createBrowserRouter([
@@ -28,41 +29,79 @@ export const router = createBrowserRouter([
         element: <RegisterPage />,
     },
     {
-        path: "*",
-        element: <PageNotFound />,
+        path: "/onboarding/welcome",
+        element: (
+            <ProtectedRoute>
+                <WelcomePage />
+            </ProtectedRoute>
+        ),
     },
     {
-        path: '/onboarding/welcome',
-        element: <WelcomePage />
+        path: "/onboarding/displayname",
+        element: (
+            <ProtectedRoute>
+                <DisplayNamePage />
+            </ProtectedRoute>
+        ),
     },
     {
-        path: '/onboarding/displayname',
-        element: <DisplayNamePage />
-    }, {
-        path: '/onboarding/username',
-        element: <UsernamePage />
+        path: "/onboarding/username",
+        element: (
+            <ProtectedRoute>
+                <UsernamePage />
+            </ProtectedRoute>
+        ),
     },
     {
-        path: '/onboarding/avatar',
-        element: <AvatarPage />
+        path: "/onboarding/avatar",
+        element: (
+            <ProtectedRoute>
+                <AvatarPage />
+            </ProtectedRoute>
+        ),
     },
     {
-        path: '/onboarding/bio',
-        element: <BioPage />
+        path: "/onboarding/bio",
+        element: (
+            <ProtectedRoute>
+                <BioPage />
+            </ProtectedRoute>
+        ),
     },
     {
-        path: '/onboarding/location',
-        element: <LocationPage />
+        path: "/onboarding/location",
+        element: (
+            <ProtectedRoute>
+                <LocationPage />
+            </ProtectedRoute>
+        ),
     },
     {
-        path: '/onboarding/dateofbirth',
-        element: <BirthdayPage />
-    }, {
-        path: 'onboarding/finished',
-        element: <OnboardingCompletePage />
+        path: "/onboarding/dateofbirth",
+        element: (
+            <ProtectedRoute>
+                <BirthdayPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/onboarding/finished",
+        element: (
+            <ProtectedRoute>
+                <OnboardingCompletePage />
+            </ProtectedRoute>
+        ),
     },
     {
         path: "/preview",
-        element: <ProfilePreviewPage />,
-    }
+        element: (
+            <ProtectedRoute>
+                <ProfilePreviewPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "*",
+        element: <PageNotFound />,
+    },
 ]);
