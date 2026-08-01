@@ -1,6 +1,8 @@
 import {ProfileOverviewCard} from './ui/ProfileOverviewCard';
 import {LinksCard} from './ui/LinksCard';
 import {QuickActionsCard} from './ui/QuickActionsCard';
+import {LivePreviewCard} from './ui/LivePreviewCard';
+
 
 export function DashboardContent() {
     return (
@@ -16,8 +18,8 @@ export function DashboardContent() {
                 </section>
 
                 {/* section right  */}
-                <section className="w-[35%] bg-pink-500 p-5 ">
-                    card y
+                <section className="w-[35%] p-5 ">
+                    <LivePreviewCard/>
                 </section>
             </main>
         </>
