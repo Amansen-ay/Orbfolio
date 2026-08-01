@@ -13,6 +13,7 @@ import { BirthdayPage } from '@/pages/onboarding/BirthdayPage'
 import { OnboardingCompletePage } from '@/pages/onboardingComplete/OnboardingCompletePage';
 import { ProfilePreviewPage } from "@/pages/ProfilePreview/ProfilePreviewPage";
 import { ProtectedRoute } from "@/features/auth/ui/ProtectedRoute";
+import { DashboardPage } from "@/pages/dashboard/DashboardPage";
 
 
 export const router = createBrowserRouter([
@@ -104,4 +105,10 @@ export const router = createBrowserRouter([
         path: "*",
         element: <PageNotFound />,
     },
+    {
+        path:"/dashboard",
+        element:(
+            <DashboardPage/>
+        )
+    }
 ]);
