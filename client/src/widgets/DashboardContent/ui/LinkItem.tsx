@@ -20,16 +20,17 @@ export function LinkItem({ link }: LinkItemProps) {
         flex
         items-center
         justify-between
-        rounded-2xl
+        rounded-lg
         border
         border-zinc-200
         bg-white
-        px-4
-        py-3
+        px-3
+        py-2    
         transition-all
         duration-200
         hover:border-orange-200
         hover:shadow-sm
+        
       "
     >
       {/* Left */}
@@ -54,8 +55,8 @@ export function LinkItem({ link }: LinkItemProps) {
         <div
           className="
             flex
-            h-12
-            w-12
+            h-10
+            w-10
             items-center
             justify-center
             rounded-xl

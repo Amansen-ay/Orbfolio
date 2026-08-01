@@ -1,5 +1,6 @@
 import {ProfileOverviewCard} from './ui/ProfileOverviewCard';
 import {LinksCard} from './ui/LinksCard';
+import {QuickActionsCard} from './ui/QuickActionsCard';
 
 export function DashboardContent() {
     return (
@@ -9,19 +10,9 @@ export function DashboardContent() {
                 {/* left section  */}
 
                 <section className="w-[65%] p-5 flex flex-col gap-5">
-
-                    
                     <ProfileOverviewCard/>
-                    
-
                     <LinksCard/>
-
-                    <div className="w-full h-40 bg-white p-3 flex justify-between gap-3">
-                        <div className="w-40 h-full bg-gray-500">Box</div>
-                        <div className="w-40 h-full bg-gray-500">Box</div>
-                        <div className="w-40 h-full bg-gray-500">Box</div>
-                        <div className="w-40 h-full bg-gray-500">Box</div>
-                    </div>
+                    <QuickActionsCard/>
                 </section>
 
                 {/* section right  */}
