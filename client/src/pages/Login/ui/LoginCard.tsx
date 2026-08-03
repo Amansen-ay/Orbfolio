@@ -41,7 +41,7 @@ export function LoginCard() {
         password: password.trim()
       })
       setAuth(response.data.token, response.data.user);
-      navigate('/preview');
+      navigate('/dashboard');
 
     }
     catch (error) {

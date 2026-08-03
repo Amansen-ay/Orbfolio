@@ -176,6 +176,7 @@ export function CompletionCard() {
             hover:-translate-y-0.5
             hover:bg-orange-600
           "
+          onClick={()=>navigate('/dashboard')}
 
                 >
                     Go to Dashboard

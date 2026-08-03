@@ -14,6 +14,7 @@ import { OnboardingCompletePage } from '@/pages/onboardingComplete/OnboardingCom
 import { ProfilePreviewPage } from "@/pages/ProfilePreview/ProfilePreviewPage";
 import { ProtectedRoute } from "@/features/auth/ui/ProtectedRoute";
 import { DashboardPage } from "@/pages/dashboard/DashboardPage";
+import {MyLinksPage} from '@/pages/myLinksPage/MyLinksPage';
 
 
 export const router = createBrowserRouter([
@@ -109,6 +110,12 @@ export const router = createBrowserRouter([
         path:"/dashboard",
         element:(
             <DashboardPage/>
+        )
+    },
+    {
+        path:"/mylinks",
+        element:(
+            <MyLinksPage/>
         )
     }
 ]);

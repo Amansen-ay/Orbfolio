@@ -7,31 +7,38 @@ import {
   Settings,
   ChevronDown,
 } from "lucide-react";
+import {useNavigate} from 'react-router-dom';
 
 const navigation = [
   {
     label: "Dashboard",
     icon: LayoutDashboard,
+    url:'/dashboard'
   },
   {
     label: "My Links",
     icon: Link2,
+    url:'/mylinks'
   },
   {
     label: "Appearance",
     icon: Palette,
+    url:'/appearance'
   },
   {
     label: "Profile",
     icon: User,
+    url:'/profile'
   },
   {
     label: "Analytics",
     icon: BarChart3,
+    url:'/analytics'
   },
   {
     label: "Settings",
     icon: Settings,
+    url:'/analytics'
   },
 ];
 
@@ -40,6 +47,7 @@ type SidebarProps = {
 };
 
 export function Sidebar({ isOpen }: SidebarProps) {
+    const navigate = useNavigate();
   return (
     <aside
       className={`
@@ -77,7 +85,7 @@ export function Sidebar({ isOpen }: SidebarProps) {
       {/* Navigation */}
 
       <nav className="mt-6 flex flex-1 flex-col gap-2">
-        {navigation.map(({ label, icon: Icon }, index) => (
+        {navigation.map(({ label, icon: Icon ,url}, index) => (
           <button
             key={label}
             className={`
@@ -100,6 +108,7 @@ export function Sidebar({ isOpen }: SidebarProps) {
                   : "text-zinc-300 hover:bg-zinc-800 hover:text-white"
               }
             `}
+            onClick={()=>navigate(url)}
           >
             <Icon size={20} />
 

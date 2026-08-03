@@ -216,6 +216,7 @@ export function ProfilePreviewPage() {
             hover:-translate-y-0.5
             hover:bg-orange-600
           "
+          onClick={()=>navigate('/dashboard')}
         >
           Go to Dashboard
           <ArrowRight size={19} />

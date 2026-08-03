@@ -16,7 +16,7 @@ import { MdEmail } from "react-icons/md";
 
 export function LivePreviewCard() {
   return (
-    <section className="rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm">
+    <section className="rounded-lg border border-zinc-200 bg-white p-5 shadow-sm">
       {/* Header */}
 
       <div className="flex items-center justify-between">
