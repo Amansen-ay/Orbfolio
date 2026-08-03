@@ -2,6 +2,7 @@ import {Plus} from 'lucide-react';
 import {FilterButtons} from './ui/FilterButtons';
 import {SearchBar} from './ui/Searchbar';
 import {LinkItemsCard} from './ui/LinksItemsCard';
+import { PaginationFooter } from './ui/Pagination';
 
 export function MyLinksContent() {
     return (
@@ -43,6 +44,9 @@ export function MyLinksContent() {
                 </section>
                 <section>
                     <LinkItemsCard/>
+                </section>
+                <section>
+                    <PaginationFooter/>
                 </section>
             </main>
         </>
